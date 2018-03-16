@@ -1,7 +1,7 @@
 ## MOTIVATION
-I strongly believe in the Blue Collar Strategy from Alan Ellman and his Blue Collar Investors. It is a 100% safe way of getting high yields in the current low-interest environment without the need for taking risks. 
-The only hook is: you MUST have your emotions under control. 
-So I am a very emotional guy as I experienced :-(. And I am a softwareengineer. And I need some more money :-) 
+The Blue Collar Strategy from Alan Ellman and his Blue Collar Investors works. It is a 100% safe way of getting high yields in the current low-interest environment without the need for taking risks. 
+The only hook: you MUST have your emotions under control. 
+So I am a very emotional guy as I experienced :-(. And I am a software guy and have fun programming. And some additional cashflow would be nice to have.
 So there you can see now the reason why this project was born. When it is finished, it helps to coordinate and even automizing the different involved activities belonging to this BCI strategy.
 
 ## MAIN OBJECTIVES
