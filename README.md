@@ -1,4 +1,3 @@
-#Covalyzer
 ## MOTIVATION
 I strongly believe in the Blue Collar Strategy from Alan Ellman and his Blue Collar Investors. It is a 100% safe way of getting high yields in the current low-interest environment without the need for taking risks. 
 The only hook is: you MUST have your emotions under control. 
