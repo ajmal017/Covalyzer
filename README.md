@@ -34,8 +34,8 @@ Be aware this is all pure old classic mechanisms ! No artificial intelligence in
  - when the position was invoked
  - would be nice to have one MAIN-Timeline where all "milestones" are put on, maybe along with the foreseeable profit during that time
  
-3) Monitor the Portfolio open positions
- - Separate accumulated profits from your calls from a potential decrease of stockprices. SHOW THE PROFITS (past/current/future) !!!
+3) Monitor positions currently open
+ - Separate accumulated profits from your calls from a potential decrease of stockprices. SHOW PROFITS (past/current/future) !!!
  - Visualize the big advantage of trading covered call vs. stock trading whereever possible.
  - WARN if a stockprice drops too fast 
    But do NOT warn if the entire market drops with this speed, as this will recover sooner or later.
@@ -46,8 +46,8 @@ Be aware this is all pure old classic mechanisms ! No artificial intelligence in
 4) Draw graphs
  - Visualization is everything. So this is an important part of the entire project:
  - Visualize th optionprofits of account over the next weeks on the basis of the actual portfolio, taking into account dividends and rollovers and transaction fees. 
- - Meltdown of timevalue of the options
- - Maybe some nice 3D charts drawing x=days left until expitry / y=strikeprice (with the current price marked) / z=timevalue
+ - Meltdown of timevalue
+ - Maybe some nice 3D charts drawing x=days left until expitry / y=strikeprice (with the current price marked) / z=timevalue or IROO
  
 5) Automization of the trading-interface. 
 - I have a lot of experience with is the Trading-API of Interactive Brokers. This will be it.
