@@ -57,7 +57,7 @@ Be aware this is all pure old classic mechanisms ! No artificial intelligence in
 5) Automization of the trading-interface. 
 - I have a lot of experience with is the Trading-API of Interactive Brokers. This will be it.
 
-##Technology and Architecture
+## Technology and Architecture
 .net / WPF / SQL
 
 
