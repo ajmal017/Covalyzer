@@ -4,11 +4,6 @@ The only hook: you MUST have your emotions under control.
 So I am a very emotional guy as I experienced :-(. And I am a software guy and have fun programming. And some additional cashflow would be nice to have.
 So there you can see now the reason why this project was born. When it is finished, it helps to coordinate and even automizing the different involved activities belonging to this BCI strategy.
 
-## MAIN OBJECTIVES
-- Auto- and Optimizing the "Blue Collar Strategy" from Alan Ellman. 
-- Make your Profits plannable. 
-- Exclude risks from trading.
-
 ### Introduction
 Alan Ellman has laid out an excellent strategy/Policy over the last decades on covered call or cash secured put positions. This comprises scanning the market, entering positions after a well defined screening process, maintaining the open Buywrites and - most important - executing the right exitstrategy.
 
