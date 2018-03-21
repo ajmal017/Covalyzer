@@ -1,10 +1,10 @@
-## MOTIVATION
+# MOTIVATION
 The Blue Collar Strategy from Alan Ellman and his Blue Collar Investors works. It is a 100% safe way of getting high yields in the current low-interest environment without the need for taking risks. 
 The only hook: you MUST have your emotions under control. 
 So I am a very emotional guy as I experienced :-(. And I am a software guy and have fun programming. And some additional cashflow would be nice to have.
 So there you can see now the reason why this project was born. When it is finished, it helps to coordinate and even automizing the different involved activities belonging to this BCI strategy.
 
-### Introduction
+# Introduction
 Alan Ellman has laid out an excellent strategy/Policy over the last decades on covered call or cash secured put positions. This comprises scanning the market, entering positions after a well defined screening process, maintaining the open Buywrites and - most important - executing the right exitstrategy.
 
 The only drawback is the toolsupport. The only support his company gives are some excel sheets which you have to fill-in and maintain manually. This gets more and more complicated whenever your positionsgrow. Managing earningcalls, ex-dividend dates, option expriry-dates and especially rollover-activity you cannot handle anymore seriously with excel if you have more than 10 positions.
@@ -14,7 +14,7 @@ The mainproblem I experienced with the strategy is, that you loose the overview 
 
 This program here should separate the accumulated optionprofits from the stockpositions. The stockpositions are observed only in the background. The main task of this program is to track AND visualize your past, your current AND your future profits so that the Blue Collar Strategy is better plannable !
 
-### Functionality
+# Functionality
 For accomplishing the objectives explained above you need tables, graphs and automatisms. A robot first must gets fed with the right input, then the robot has to run. I must get the current prices, it has to process these, afterwards runs the BCI rules over it, gets all the dates for the important events for expiry/earningcalls/dividends and at the end visualizes the whole results of theses processes to the accountholder. Everytime all possible and plannable contraints must be taken into account.
 Be aware this is all pure old classic mechanisms ! No artificial intelligence involved.
 
@@ -52,7 +52,9 @@ Be aware this is all pure old classic mechanisms ! No artificial intelligence in
 5) Automization of the trading-interface. 
 - I have a lot of experience with is the Trading-API of Interactive Brokers. This will be it.
 
-## Technology and Architecture
-.net / WPF / SQL
+# Technology 
+.Net (>4.7) / WPF/XAML / EF6 / MS-SQL-Server /IB-TWS
+
+# Architecture
 
 
