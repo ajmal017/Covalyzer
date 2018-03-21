@@ -3,8 +3,8 @@ As used in "Pro C# 7 by Andrew Troelsen and Philip Japiske"
 
 # Database Naming Conventions
 ## Rules
-### Tablenames start with Capital, everything else lowercase
-Ex: Use first_name, not "First_Name"
+### Tablenames start with Capital, subwords Capital as well
+Ex: Use "FirstName"
 
 ### Underscores separate words, except Tablenames
 Object name that are comprised of multiple words should be separated by underscores (ie. snake_case)
