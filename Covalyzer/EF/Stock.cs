@@ -1,4 +1,4 @@
-namespace Covalyzer.EF
+namespace Covalyzer.Ef
 {
     using System;
     using System.Collections.Generic;
@@ -17,9 +17,6 @@ namespace Covalyzer.EF
         public int exdividend_dates_id { get; set; }
 
         public int earningcall_dates_id { get; set; }
-
-        [StringLength(50)]
-        public string ticker { get; set; }
 
         [StringLength(10)]
         public string name { get; set; }

@@ -71,20 +71,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EF\CovalyzerModel.cs" />
-    <Compile Include="EF\Day.cs" />
-    <Compile Include="EF\EarningcallsDate.cs" />
-    <Compile Include="EF\Etf.cs" />
-    <Compile Include="EF\ExDividendDate.cs" />
-    <Compile Include="EF\ExpiryDate.cs" />
-    <Compile Include="EF\MemberMap.cs" />
-    <Compile Include="EF\Option.cs" />
-    <Compile Include="EF\Price.cs" />
-    <Compile Include="EF\Security.cs" />
-    <Compile Include="EF\Stock.cs" />
-    <Compile Include="EF\sysdiagrams.cs" />
-    <Compile Include="EF\Transaction.cs" />
-    <Compile Include="EF\Watchlist.cs" />
+    <Compile Include="Ef\CCModel.cs" />
+    <Compile Include="Ef\Day.cs" />
+    <Compile Include="Ef\EarningcallsDate.cs" />
+    <Compile Include="Ef\Etf.cs" />
+    <Compile Include="Ef\ExDividendDate.cs" />
+    <Compile Include="Ef\ExpiryDate.cs" />
+    <Compile Include="Ef\MemberMap.cs" />
+    <Compile Include="Ef\Option.cs" />
+    <Compile Include="Ef\Price.cs" />
+    <Compile Include="Ef\Security.cs" />
+    <Compile Include="Ef\Stock.cs" />
+    <Compile Include="Ef\StockExchange.cs" />
+    <Compile Include="Ef\Transaction.cs" />
+    <Compile Include="Ef\Watchlist.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

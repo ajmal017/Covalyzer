@@ -1,4 +1,4 @@
-namespace Covalyzer.EF
+namespace Covalyzer.Ef
 {
     using System;
     using System.Collections.Generic;
@@ -19,10 +19,9 @@ namespace Covalyzer.EF
         public int expiry_date_id { get; set; }
 
         [StringLength(50)]
-        public string ticker { get; set; }
-
-        [StringLength(50)]
         public string strike { get; set; }
+
+        public int? open_interest { get; set; }
 
         public virtual ExpiryDate ExpiryDate { get; set; }
 

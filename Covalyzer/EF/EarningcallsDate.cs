@@ -1,4 +1,4 @@
-namespace Covalyzer.EF
+namespace Covalyzer.Ef
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,6 @@ namespace Covalyzer.EF
         {
             Stock = new HashSet<Stock>();
         }
-
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }

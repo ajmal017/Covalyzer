@@ -1,4 +1,4 @@
-namespace Covalyzer.EF
+namespace Covalyzer.Ef
 {
     using System;
     using System.Collections.Generic;
@@ -18,8 +18,6 @@ namespace Covalyzer.EF
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
-
-        public int stock_id { get; set; }
 
         public int day_id { get; set; }
 

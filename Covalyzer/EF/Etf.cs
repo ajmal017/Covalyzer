@@ -1,4 +1,4 @@
-namespace Covalyzer.EF
+namespace Covalyzer.Ef
 {
     using System;
     using System.Collections.Generic;
