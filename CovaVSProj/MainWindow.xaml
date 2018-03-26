@@ -8,7 +8,7 @@
         Title="MainWindow" Height="600" Width="1025" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="stockViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Stock}, CreateList=True}"/>
-        <CollectionViewSource x:Key="optionViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Option}, CreateList=True}"/>
+        <!--<CollectionViewSource x:Key="optionViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Option}, CreateList=True}"/>-->
         <Style x:Key="Label" TargetType="{x:Type Label}" BasedOn="{x:Null}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -80,8 +80,8 @@
             <TextBox x:Name="stockIDTextBox"  Grid.Row="0" Style="{StaticResource StockTextBox}"   
                   Text="{Binding id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
             <Label Content="Stock Name:"  Grid.Row="1" Style="{StaticResource Label}"/>
-            <TextBox x:Name="stockNameTextBox"  Grid.Row="1" Style="{StaticResource StockTextBox}"   
-                  Text="{Binding CompanyName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+            <TextBox x:Name="companyNameTextBox"  Grid.Row="1" Style="{StaticResource StockTextBox}"   
+                  Text="{Binding name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
         </Grid>
         <Grid x:Name="newStockGrid" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=newStock, UpdateSourceTrigger=Explicit}" Visibility="Collapsed" Background="CornflowerBlue">
             <Grid.ColumnDefinitions>

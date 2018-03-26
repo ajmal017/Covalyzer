@@ -35,8 +35,8 @@ namespace CovaVSProj
             newOption = new Option();
             stockViewSource = ((CollectionViewSource)
                 (FindResource("stockViewSource")));
-            optionViewSource = ((CollectionViewSource)
-                (FindResource("optionViewSource")));
+            //optionViewSource = ((CollectionViewSource)
+            //    (FindResource("optionViewSource")));
             DataContext = this;
         }
 
@@ -50,6 +50,9 @@ namespace CovaVSProj
             // Load data by setting the CollectionViewSource.Source property:
             // optionViewSource.Source = [generic data source]
             context.Stock.Load();
+            context.Day.Load();
+            context.Option.Load();
+            context.Security.Load();
 
             // After the data is loaded call the DbSet<T>.Local property    
             // to use the DbSet<T> as a binding source.   
@@ -104,7 +107,7 @@ namespace CovaVSProj
                 newStock = new Stock();
                 newStock.name = add_companyNameTextBox.Text;
                 //    newStock.City = add_cityTextBox.Text;
-                //    newStock.CompanyName = add_companyNameTextBox.Text;
+                //    newStock.CompanyName = add_companyNameTextBox.Text; 
                 //    newStock.ContactName = add_contactNameTextBox.Text;
                 //    newStock.ContactTitle = add_contactTitleTextBox.Text;
                 //    newStock.Country = add_countryTextBox.Text;
@@ -208,7 +211,7 @@ namespace CovaVSProj
             context.SaveChanges();
 
             // Update the data grid.  
-            optionViewSource.View.Refresh();
+            //optionViewSource.View.Refresh();
         }
     }
 }
