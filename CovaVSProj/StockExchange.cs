@@ -14,8 +14,17 @@ namespace CovaVSProj
     
     public partial class StockExchange
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public StockExchange()
+        {
+            this.Security = new ObservableCollection<Security>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string country { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ObservableCollection<Security> Security { get; set; }
     }
 }

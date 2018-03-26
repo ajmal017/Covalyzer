@@ -20,5 +20,9 @@ namespace CovaVSProj
         public int expiry_date_id { get; set; }
         public string strike { get; set; }
         public Nullable<int> open_interest { get; set; }
+    
+        public virtual ExpiryDate ExpiryDate { get; set; }
+        public virtual Security Security { get; set; }
+        public virtual Security Security1 { get; set; }
     }
 }

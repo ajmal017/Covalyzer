@@ -21,5 +21,7 @@ namespace CovaVSProj
         public string action { get; set; }
         public string price { get; set; }
         public string transaction_costs { get; set; }
+    
+        public virtual Security Security { get; set; }
     }
 }

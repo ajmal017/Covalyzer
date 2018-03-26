@@ -7,11 +7,33 @@
       <Diagram DiagramId="48420c4e4fbd421fa6a30f1368c941a6" Name="Diagram1">
         <EntityTypeShape EntityType="CovalyzerModel.Day" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CovalyzerModel.Etf" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CovalyzerModel.Option" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CovalyzerModel.Option" Width="1.5" PointX="11.5" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CovalyzerModel.Stock" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CovalyzerModel.StockExchange" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CovalyzerModel.Transaction" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CovalyzerModel.Watchlist" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CovalyzerModel.EarningcallsDate" Width="1.5" PointX="0.75" PointY="11.125" />
+        <EntityTypeShape EntityType="CovalyzerModel.ExDividendDate" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CovalyzerModel.ExpiryDate" Width="1.5" PointX="1" PointY="14.25" />
+        <EntityTypeShape EntityType="CovalyzerModel.MemberMap" Width="1.5" PointX="9.5" PointY="6.125" />
+        <EntityTypeShape EntityType="CovalyzerModel.Price" Width="1.5" PointX="9.5" PointY="9" />
+        <EntityTypeShape EntityType="CovalyzerModel.Security" Width="1.5" PointX="7.25" PointY="6.875" />
+        <AssociationConnector Association="CovalyzerModel.FK_EarningcallsDate_Day" />
+        <AssociationConnector Association="CovalyzerModel.FK_ExDividendDate_Day" />
+        <AssociationConnector Association="CovalyzerModel.FK_ExpiryDate_Day" />
+        <AssociationConnector Association="CovalyzerModel.FK_Stock_EarningcallsDate" />
+        <AssociationConnector Association="CovalyzerModel.FK_Etf_ExDividendDate" />
+        <AssociationConnector Association="CovalyzerModel.FK_Etf_Security" />
+        <AssociationConnector Association="CovalyzerModel.FK_Stock_ExDividendDate" />
+        <AssociationConnector Association="CovalyzerModel.FK_Option_ExpiryDate" />
+        <AssociationConnector Association="CovalyzerModel.FK_MemberMap_Security" />
+        <AssociationConnector Association="CovalyzerModel.FK_Watchlist_MemberMap" />
+        <AssociationConnector Association="CovalyzerModel.FK_Opt_Security" />
+        <AssociationConnector Association="CovalyzerModel.FK_Option_Security" />
+        <AssociationConnector Association="CovalyzerModel.FK_Price_Security" />
+        <AssociationConnector Association="CovalyzerModel.FK_Security_StockExchange" />
+        <AssociationConnector Association="CovalyzerModel.FK_Stock_Security" />
+        <AssociationConnector Association="CovalyzerModel.FK_Transaction_Security" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

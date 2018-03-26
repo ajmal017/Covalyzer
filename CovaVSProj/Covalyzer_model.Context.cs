@@ -32,5 +32,11 @@ namespace CovaVSProj
         public virtual DbSet<StockExchange> StockExchange { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Watchlist> Watchlist { get; set; }
+        public virtual DbSet<EarningcallsDate> EarningcallsDate { get; set; }
+        public virtual DbSet<ExDividendDate> ExDividendDate { get; set; }
+        public virtual DbSet<ExpiryDate> ExpiryDate { get; set; }
+        public virtual DbSet<MemberMap> MemberMap { get; set; }
+        public virtual DbSet<Price> Price { get; set; }
+        public virtual DbSet<Security> Security { get; set; }
     }
 }

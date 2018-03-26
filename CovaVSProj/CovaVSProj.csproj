@@ -71,10 +71,28 @@
     <Compile Include="Day.cs">
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EarningcallsDate.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Etf.cs">
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExDividendDate.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpiryDate.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberMap.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Option.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Price.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Security.cs">
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Stock.cs">

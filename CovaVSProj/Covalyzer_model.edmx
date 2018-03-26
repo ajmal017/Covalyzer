@@ -4,13 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CovalyzerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CovalyzerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Day">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="day" Type="date" />
+        </EntityType>
+        <EntityType Name="EarningcallsDate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="day_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Etf">
           <Key>
@@ -19,6 +26,29 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="security_id" Type="int" Nullable="false" />
           <Property Name="exdividend_dates_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExDividendDate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="day_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExpiryDate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="day_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberMap">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" Nullable="false" />
+          <Property Name="watchlist_id" Type="int" Nullable="false" />
+          <Property Name="security_id" Type="int" Nullable="false" />
+          <Property Name="position" Type="int" />
         </EntityType>
         <EntityType Name="Option">
           <Key>
@@ -30,6 +60,28 @@
           <Property Name="expiry_date_id" Type="int" Nullable="false" />
           <Property Name="strike" Type="varchar" MaxLength="50" />
           <Property Name="open_interest" Type="int" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="security_id" Type="int" Nullable="false" />
+          <Property Name="tstamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="bid" Type="nchar" MaxLength="10" />
+          <Property Name="ask" Type="nchar" MaxLength="10" />
+          <Property Name="last" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Security">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ticker_symbol" Type="varchar" MaxLength="50" />
+          <Property Name="stock_exchange_id" Type="int" Nullable="false" />
+          <Property Name="position" Type="int" />
+          <Property Name="price" Type="nchar" MaxLength="10" />
+          <Property Name="currency" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -69,17 +121,278 @@
           <Property Name="member_map_id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_EarningcallsDate_Day">
+          <End Role="Day" Type="Self.Day" Multiplicity="1" />
+          <End Role="EarningcallsDate" Type="Self.EarningcallsDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Day">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EarningcallsDate">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etf_ExDividendDate">
+          <End Role="ExDividendDate" Type="Self.ExDividendDate" Multiplicity="1" />
+          <End Role="Etf" Type="Self.Etf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExDividendDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Etf">
+              <PropertyRef Name="exdividend_dates_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etf_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="Etf" Type="Self.Etf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Etf">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExDividendDate_Day">
+          <End Role="Day" Type="Self.Day" Multiplicity="1" />
+          <End Role="ExDividendDate" Type="Self.ExDividendDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Day">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ExDividendDate">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpiryDate_Day">
+          <End Role="Day" Type="Self.Day" Multiplicity="1" />
+          <End Role="ExpiryDate" Type="Self.ExpiryDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Day">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ExpiryDate">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberMap_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="MemberMap" Type="Self.MemberMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MemberMap">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opt_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="Option" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_ExpiryDate">
+          <End Role="ExpiryDate" Type="Self.ExpiryDate" Multiplicity="1" />
+          <End Role="Option" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpiryDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="expiry_date_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="Option" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="underlyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="Price" Type="Self.Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_StockExchange">
+          <End Role="StockExchange" Type="Self.StockExchange" Multiplicity="1" />
+          <End Role="Security" Type="Self.Security" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockExchange">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Security">
+              <PropertyRef Name="stock_exchange_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_EarningcallsDate">
+          <End Role="EarningcallsDate" Type="Self.EarningcallsDate" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EarningcallsDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="earningcall_dates_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_ExDividendDate">
+          <End Role="ExDividendDate" Type="Self.ExDividendDate" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExDividendDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="exdividend_dates_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Security">
+          <End Role="Security" Type="Self.Security" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Watchlist_MemberMap">
+          <End Role="MemberMap" Type="Self.MemberMap" Multiplicity="1" />
+          <End Role="Watchlist" Type="Self.Watchlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMap">
+              <PropertyRef Name="int" />
+            </Principal>
+            <Dependent Role="Watchlist">
+              <PropertyRef Name="member_map_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CovalyzerModelStoreContainer">
           <EntitySet Name="Day" EntityType="Self.Day" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EarningcallsDate" EntityType="Self.EarningcallsDate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Etf" EntityType="Self.Etf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExDividendDate" EntityType="Self.ExDividendDate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpiryDate" EntityType="Self.ExpiryDate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberMap" EntityType="Self.MemberMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Option" EntityType="Self.Option" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Security" EntityType="Self.Security" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StockExchange" EntityType="Self.StockExchange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Watchlist" EntityType="Self.Watchlist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EarningcallsDate_Day" Association="Self.FK_EarningcallsDate_Day">
+            <End Role="Day" EntitySet="Day" />
+            <End Role="EarningcallsDate" EntitySet="EarningcallsDate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etf_ExDividendDate" Association="Self.FK_Etf_ExDividendDate">
+            <End Role="ExDividendDate" EntitySet="ExDividendDate" />
+            <End Role="Etf" EntitySet="Etf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etf_Security" Association="Self.FK_Etf_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Etf" EntitySet="Etf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExDividendDate_Day" Association="Self.FK_ExDividendDate_Day">
+            <End Role="Day" EntitySet="Day" />
+            <End Role="ExDividendDate" EntitySet="ExDividendDate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpiryDate_Day" Association="Self.FK_ExpiryDate_Day">
+            <End Role="Day" EntitySet="Day" />
+            <End Role="ExpiryDate" EntitySet="ExpiryDate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberMap_Security" Association="Self.FK_MemberMap_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="MemberMap" EntitySet="MemberMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opt_Security" Association="Self.FK_Opt_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_ExpiryDate" Association="Self.FK_Option_ExpiryDate">
+            <End Role="ExpiryDate" EntitySet="ExpiryDate" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_Security" Association="Self.FK_Option_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_Security" Association="Self.FK_Price_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_StockExchange" Association="Self.FK_Security_StockExchange">
+            <End Role="StockExchange" EntitySet="StockExchange" />
+            <End Role="Security" EntitySet="Security" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_EarningcallsDate" Association="Self.FK_Stock_EarningcallsDate">
+            <End Role="EarningcallsDate" EntitySet="EarningcallsDate" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_ExDividendDate" Association="Self.FK_Stock_ExDividendDate">
+            <End Role="ExDividendDate" EntitySet="ExDividendDate" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Security" Association="Self.FK_Stock_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Security" Association="Self.FK_Transaction_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Watchlist_MemberMap" Association="Self.FK_Watchlist_MemberMap">
+            <End Role="MemberMap" EntitySet="MemberMap" />
+            <End Role="Watchlist" EntitySet="Watchlist" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CovalyzerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -89,6 +402,9 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="day1" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EarningcallsDate" Relationship="CovalyzerModel.FK_EarningcallsDate_Day" FromRole="Day" ToRole="EarningcallsDate" />
+          <NavigationProperty Name="ExDividendDate" Relationship="CovalyzerModel.FK_ExDividendDate_Day" FromRole="Day" ToRole="ExDividendDate" />
+          <NavigationProperty Name="ExpiryDate" Relationship="CovalyzerModel.FK_ExpiryDate_Day" FromRole="Day" ToRole="ExpiryDate" />
         </EntityType>
         <EntityType Name="Etf">
           <Key>
@@ -97,6 +413,8 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="security_id" Type="Int32" Nullable="false" />
           <Property Name="exdividend_dates_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ExDividendDate" Relationship="CovalyzerModel.FK_Etf_ExDividendDate" FromRole="Etf" ToRole="ExDividendDate" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_Etf_Security" FromRole="Etf" ToRole="Security" />
         </EntityType>
         <EntityType Name="Option">
           <Key>
@@ -108,6 +426,9 @@
           <Property Name="expiry_date_id" Type="Int32" Nullable="false" />
           <Property Name="strike" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="open_interest" Type="Int32" />
+          <NavigationProperty Name="ExpiryDate" Relationship="CovalyzerModel.FK_Option_ExpiryDate" FromRole="Option" ToRole="ExpiryDate" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_Opt_Security" FromRole="Option" ToRole="Security" />
+          <NavigationProperty Name="Security1" Relationship="CovalyzerModel.FK_Option_Security" FromRole="Option" ToRole="Security" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -118,6 +439,9 @@
           <Property Name="exdividend_dates_id" Type="Int32" Nullable="false" />
           <Property Name="earningcall_dates_id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="EarningcallsDate" Relationship="CovalyzerModel.FK_Stock_EarningcallsDate" FromRole="Stock" ToRole="EarningcallsDate" />
+          <NavigationProperty Name="ExDividendDate" Relationship="CovalyzerModel.FK_Stock_ExDividendDate" FromRole="Stock" ToRole="ExDividendDate" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_Stock_Security" FromRole="Stock" ToRole="Security" />
         </EntityType>
         <EntityType Name="StockExchange">
           <Key>
@@ -126,6 +450,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_Security_StockExchange" FromRole="StockExchange" ToRole="Security" />
         </EntityType>
         <EntityType Name="Transaction">
           <Key>
@@ -138,6 +463,7 @@
           <Property Name="action" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="transaction_costs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_Transaction_Security" FromRole="Transaction" ToRole="Security" />
         </EntityType>
         <EntityType Name="Watchlist">
           <Key>
@@ -146,6 +472,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="member_map_id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MemberMap" Relationship="CovalyzerModel.FK_Watchlist_MemberMap" FromRole="Watchlist" ToRole="MemberMap" />
         </EntityType>
         <EntityContainer Name="CovalyzerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Day" EntityType="Self.Day" />
@@ -155,7 +482,339 @@
           <EntitySet Name="StockExchange" EntityType="Self.StockExchange" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" />
           <EntitySet Name="Watchlist" EntityType="Self.Watchlist" />
+          <EntitySet Name="EarningcallsDate" EntityType="CovalyzerModel.EarningcallsDate" />
+          <EntitySet Name="ExDividendDate" EntityType="CovalyzerModel.ExDividendDate" />
+          <EntitySet Name="ExpiryDate" EntityType="CovalyzerModel.ExpiryDate" />
+          <EntitySet Name="MemberMap" EntityType="CovalyzerModel.MemberMap" />
+          <EntitySet Name="Price" EntityType="CovalyzerModel.Price" />
+          <EntitySet Name="Security" EntityType="CovalyzerModel.Security" />
+          <AssociationSet Name="FK_EarningcallsDate_Day" Association="CovalyzerModel.FK_EarningcallsDate_Day">
+            <End Role="Day" EntitySet="Day" />
+            <End Role="EarningcallsDate" EntitySet="EarningcallsDate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExDividendDate_Day" Association="CovalyzerModel.FK_ExDividendDate_Day">
+            <End Role="Day" EntitySet="Day" />
+            <End Role="ExDividendDate" EntitySet="ExDividendDate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpiryDate_Day" Association="CovalyzerModel.FK_ExpiryDate_Day">
+            <End Role="Day" EntitySet="Day" />
+            <End Role="ExpiryDate" EntitySet="ExpiryDate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_EarningcallsDate" Association="CovalyzerModel.FK_Stock_EarningcallsDate">
+            <End Role="EarningcallsDate" EntitySet="EarningcallsDate" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etf_ExDividendDate" Association="CovalyzerModel.FK_Etf_ExDividendDate">
+            <End Role="ExDividendDate" EntitySet="ExDividendDate" />
+            <End Role="Etf" EntitySet="Etf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etf_Security" Association="CovalyzerModel.FK_Etf_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Etf" EntitySet="Etf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_ExDividendDate" Association="CovalyzerModel.FK_Stock_ExDividendDate">
+            <End Role="ExDividendDate" EntitySet="ExDividendDate" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_ExpiryDate" Association="CovalyzerModel.FK_Option_ExpiryDate">
+            <End Role="ExpiryDate" EntitySet="ExpiryDate" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberMap_Security" Association="CovalyzerModel.FK_MemberMap_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="MemberMap" EntitySet="MemberMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Watchlist_MemberMap" Association="CovalyzerModel.FK_Watchlist_MemberMap">
+            <End Role="MemberMap" EntitySet="MemberMap" />
+            <End Role="Watchlist" EntitySet="Watchlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opt_Security" Association="CovalyzerModel.FK_Opt_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Option_Security" Association="CovalyzerModel.FK_Option_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Option" EntitySet="Option" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_Security" Association="CovalyzerModel.FK_Price_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Price" EntitySet="Price" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Security_StockExchange" Association="CovalyzerModel.FK_Security_StockExchange">
+            <End Role="StockExchange" EntitySet="StockExchange" />
+            <End Role="Security" EntitySet="Security" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Security" Association="CovalyzerModel.FK_Stock_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Security" Association="CovalyzerModel.FK_Transaction_Security">
+            <End Role="Security" EntitySet="Security" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="EarningcallsDate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="day_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Day" Relationship="CovalyzerModel.FK_EarningcallsDate_Day" FromRole="EarningcallsDate" ToRole="Day" />
+          <NavigationProperty Name="Stock" Relationship="CovalyzerModel.FK_Stock_EarningcallsDate" FromRole="EarningcallsDate" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="ExDividendDate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="day_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Day" Relationship="CovalyzerModel.FK_ExDividendDate_Day" FromRole="ExDividendDate" ToRole="Day" />
+          <NavigationProperty Name="Etf" Relationship="CovalyzerModel.FK_Etf_ExDividendDate" FromRole="ExDividendDate" ToRole="Etf" />
+          <NavigationProperty Name="Stock" Relationship="CovalyzerModel.FK_Stock_ExDividendDate" FromRole="ExDividendDate" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="ExpiryDate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="day_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Day" Relationship="CovalyzerModel.FK_ExpiryDate_Day" FromRole="ExpiryDate" ToRole="Day" />
+          <NavigationProperty Name="Option" Relationship="CovalyzerModel.FK_Option_ExpiryDate" FromRole="ExpiryDate" ToRole="Option" />
+        </EntityType>
+        <EntityType Name="MemberMap">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" />
+          <Property Name="watchlist_id" Type="Int32" Nullable="false" />
+          <Property Name="security_id" Type="Int32" Nullable="false" />
+          <Property Name="position" Type="Int32" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_MemberMap_Security" FromRole="MemberMap" ToRole="Security" />
+          <NavigationProperty Name="Watchlist" Relationship="CovalyzerModel.FK_Watchlist_MemberMap" FromRole="MemberMap" ToRole="Watchlist" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="security_id" Type="Int32" Nullable="false" />
+          <Property Name="tstamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="bid" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ask" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="last" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Security" Relationship="CovalyzerModel.FK_Price_Security" FromRole="Price" ToRole="Security" />
+        </EntityType>
+        <EntityType Name="Security">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ticker_symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock_exchange_id" Type="Int32" Nullable="false" />
+          <Property Name="position" Type="Int32" />
+          <Property Name="price" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="currency" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Etf" Relationship="CovalyzerModel.FK_Etf_Security" FromRole="Security" ToRole="Etf" />
+          <NavigationProperty Name="MemberMap" Relationship="CovalyzerModel.FK_MemberMap_Security" FromRole="Security" ToRole="MemberMap" />
+          <NavigationProperty Name="Option" Relationship="CovalyzerModel.FK_Opt_Security" FromRole="Security" ToRole="Option" />
+          <NavigationProperty Name="Option1" Relationship="CovalyzerModel.FK_Option_Security" FromRole="Security" ToRole="Option" />
+          <NavigationProperty Name="Price1" Relationship="CovalyzerModel.FK_Price_Security" FromRole="Security" ToRole="Price" />
+          <NavigationProperty Name="StockExchange" Relationship="CovalyzerModel.FK_Security_StockExchange" FromRole="Security" ToRole="StockExchange" />
+          <NavigationProperty Name="Stock" Relationship="CovalyzerModel.FK_Stock_Security" FromRole="Security" ToRole="Stock" />
+          <NavigationProperty Name="Transaction" Relationship="CovalyzerModel.FK_Transaction_Security" FromRole="Security" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_EarningcallsDate_Day">
+          <End Type="CovalyzerModel.Day" Role="Day" Multiplicity="1" />
+          <End Type="CovalyzerModel.EarningcallsDate" Role="EarningcallsDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Day">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EarningcallsDate">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExDividendDate_Day">
+          <End Type="CovalyzerModel.Day" Role="Day" Multiplicity="1" />
+          <End Type="CovalyzerModel.ExDividendDate" Role="ExDividendDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Day">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ExDividendDate">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpiryDate_Day">
+          <End Type="CovalyzerModel.Day" Role="Day" Multiplicity="1" />
+          <End Type="CovalyzerModel.ExpiryDate" Role="ExpiryDate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Day">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ExpiryDate">
+              <PropertyRef Name="day_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_EarningcallsDate">
+          <End Type="CovalyzerModel.EarningcallsDate" Role="EarningcallsDate" Multiplicity="1" />
+          <End Type="CovalyzerModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EarningcallsDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="earningcall_dates_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etf_ExDividendDate">
+          <End Type="CovalyzerModel.ExDividendDate" Role="ExDividendDate" Multiplicity="1" />
+          <End Type="CovalyzerModel.Etf" Role="Etf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExDividendDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Etf">
+              <PropertyRef Name="exdividend_dates_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etf_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.Etf" Role="Etf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Etf">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_ExDividendDate">
+          <End Type="CovalyzerModel.ExDividendDate" Role="ExDividendDate" Multiplicity="1" />
+          <End Type="CovalyzerModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExDividendDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="exdividend_dates_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_ExpiryDate">
+          <End Type="CovalyzerModel.ExpiryDate" Role="ExpiryDate" Multiplicity="1" />
+          <End Type="CovalyzerModel.Option" Role="Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpiryDate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="expiry_date_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberMap_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.MemberMap" Role="MemberMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MemberMap">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Watchlist_MemberMap">
+          <End Type="CovalyzerModel.MemberMap" Role="MemberMap" Multiplicity="1" />
+          <End Type="CovalyzerModel.Watchlist" Role="Watchlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMap">
+              <PropertyRef Name="int" />
+            </Principal>
+            <Dependent Role="Watchlist">
+              <PropertyRef Name="member_map_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opt_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.Option" Role="Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Option_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.Option" Role="Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Option">
+              <PropertyRef Name="underlyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Security_StockExchange">
+          <End Type="CovalyzerModel.StockExchange" Role="StockExchange" Multiplicity="1" />
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockExchange">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Security">
+              <PropertyRef Name="stock_exchange_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Security">
+          <End Type="CovalyzerModel.Security" Role="Security" Multiplicity="1" />
+          <End Type="CovalyzerModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Security">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="security_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -230,6 +889,64 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="member_map_id" ColumnName="member_map_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EarningcallsDate">
+            <EntityTypeMapping TypeName="CovalyzerModel.EarningcallsDate">
+              <MappingFragment StoreEntitySet="EarningcallsDate">
+                <ScalarProperty Name="day_id" ColumnName="day_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExDividendDate">
+            <EntityTypeMapping TypeName="CovalyzerModel.ExDividendDate">
+              <MappingFragment StoreEntitySet="ExDividendDate">
+                <ScalarProperty Name="day_id" ColumnName="day_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpiryDate">
+            <EntityTypeMapping TypeName="CovalyzerModel.ExpiryDate">
+              <MappingFragment StoreEntitySet="ExpiryDate">
+                <ScalarProperty Name="day_id" ColumnName="day_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberMap">
+            <EntityTypeMapping TypeName="CovalyzerModel.MemberMap">
+              <MappingFragment StoreEntitySet="MemberMap">
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="security_id" ColumnName="security_id" />
+                <ScalarProperty Name="watchlist_id" ColumnName="watchlist_id" />
+                <ScalarProperty Name="int" ColumnName="int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price">
+            <EntityTypeMapping TypeName="CovalyzerModel.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="last" ColumnName="last" />
+                <ScalarProperty Name="ask" ColumnName="ask" />
+                <ScalarProperty Name="bid" ColumnName="bid" />
+                <ScalarProperty Name="tstamp" ColumnName="tstamp" />
+                <ScalarProperty Name="security_id" ColumnName="security_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Security">
+            <EntityTypeMapping TypeName="CovalyzerModel.Security">
+              <MappingFragment StoreEntitySet="Security">
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="stock_exchange_id" ColumnName="stock_exchange_id" />
+                <ScalarProperty Name="ticker_symbol" ColumnName="ticker_symbol" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

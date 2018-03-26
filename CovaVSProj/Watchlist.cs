@@ -17,5 +17,7 @@ namespace CovaVSProj
         public int id { get; set; }
         public int member_map_id { get; set; }
         public string name { get; set; }
+    
+        public virtual MemberMap MemberMap { get; set; }
     }
 }

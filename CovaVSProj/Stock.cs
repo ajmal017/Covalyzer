@@ -19,5 +19,9 @@ namespace CovaVSProj
         public int exdividend_dates_id { get; set; }
         public int earningcall_dates_id { get; set; }
         public string name { get; set; }
+    
+        public virtual EarningcallsDate EarningcallsDate { get; set; }
+        public virtual ExDividendDate ExDividendDate { get; set; }
+        public virtual Security Security { get; set; }
     }
 }
