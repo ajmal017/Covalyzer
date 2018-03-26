@@ -24,5 +24,16 @@ namespace CovaVSProj
     {
       InitializeComponent();
     }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+
+      System.Windows.Data.CollectionViewSource stockViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stockViewSource")));
+      // Load data by setting the CollectionViewSource.Source property:
+      // stockViewSource.Source = [generic data source]
+      System.Windows.Data.CollectionViewSource optionViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("optionViewSource")));
+      // Load data by setting the CollectionViewSource.Source property:
+      // optionViewSource.Source = [generic data source]
+    }
   }
 }

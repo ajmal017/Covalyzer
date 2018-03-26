@@ -138,6 +138,13 @@
       <DependentUpon>Covalyzer_model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Day.datasource" />
+    <None Include="Properties\DataSources\Etf.datasource" />
+    <None Include="Properties\DataSources\Option.datasource" />
+    <None Include="Properties\DataSources\Stock.datasource" />
+    <None Include="Properties\DataSources\StockExchange.datasource" />
+    <None Include="Properties\DataSources\Transaction.datasource" />
+    <None Include="Properties\DataSources\Watchlist.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -5,5 +5,7 @@
 *.exe
 example/WpfEF6Test/obj/*
 example/WpfEF6Test/bin/*
+CovaVSProj/bin/
+CovaVSProj/obj/
 CovaVSProj/.vs
 *.suo
