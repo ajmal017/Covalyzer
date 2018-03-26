@@ -1,0 +1,9 @@
+*.baml
+*.cache
+*.Cache
+*.resources
+*.exe
+example/WpfEF6Test/obj/*
+example/WpfEF6Test/bin/*
+CovaVSProj/.vs
+*.suo
