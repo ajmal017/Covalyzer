@@ -6,6 +6,8 @@
 example/WpfEF6Test/obj/*
 example/WpfEF6Test/bin/*
 CovaVSProj/bin/
+CovaVSProj/ibclient/bin/
 CovaVSProj/obj/
+CovaVSProj/ibclient/obj/
 CovaVSProj/.vs
 *.suo
