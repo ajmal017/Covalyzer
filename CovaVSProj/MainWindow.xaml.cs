@@ -49,8 +49,7 @@ namespace CovaVSProj
             //System.Windows.Data.CollectionViewSource optionViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("optionViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // optionViewSource.Source = [generic data source]
-            context.Stock.Load();
-            context.Day.Load();
+            context.Stock.Load();            
             context.Option.Load();
             context.Security.Load();
 
@@ -89,10 +88,10 @@ namespace CovaVSProj
 
             if (stock != null)
             {
-                foreach (var opt in stock.Security.Option.ToList())
-                {
-                    Delete_Option(opt);
-                }
+                //foreach (var opt in stock.Security.Option.ToList())
+                //{
+                //    Delete_Option(opt);
+                //}
                 context.Stock.Remove(stock);
             }
             context.SaveChanges();

@@ -16,7 +16,7 @@ namespace CovaVSProj
     public partial class CovalyzerEntities : DbContext
     {
         public CovalyzerEntities()
-            : base("name=CovalyzerEntities")
+            : base("name=CovalyzerEntities1")
         {
         }
     
@@ -25,18 +25,15 @@ namespace CovaVSProj
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Day> Day { get; set; }
         public virtual DbSet<Etf> Etf { get; set; }
+        public virtual DbSet<MemberMap> MemberMap { get; set; }
         public virtual DbSet<Option> Option { get; set; }
+        public virtual DbSet<Price> Price { get; set; }
+        public virtual DbSet<Security> Security { get; set; }
         public virtual DbSet<Stock> Stock { get; set; }
         public virtual DbSet<StockExchange> StockExchange { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
+        public virtual DbSet<Underlier> Underlier { get; set; }
         public virtual DbSet<Watchlist> Watchlist { get; set; }
-        public virtual DbSet<EarningcallsDate> EarningcallsDate { get; set; }
-        public virtual DbSet<ExDividendDate> ExDividendDate { get; set; }
-        public virtual DbSet<ExpiryDate> ExpiryDate { get; set; }
-        public virtual DbSet<MemberMap> MemberMap { get; set; }
-        public virtual DbSet<Price> Price { get; set; }
-        public virtual DbSet<Security> Security { get; set; }
     }
 }

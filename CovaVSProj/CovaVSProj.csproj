@@ -68,19 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Day.cs">
-      <DependentUpon>Covalyzer_model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EarningcallsDate.cs">
-      <DependentUpon>Covalyzer_model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Etf.cs">
-      <DependentUpon>Covalyzer_model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ExDividendDate.cs">
-      <DependentUpon>Covalyzer_model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ExpiryDate.cs">
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
     <Compile Include="MemberMap.cs">
@@ -102,6 +90,9 @@
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs">
+      <DependentUpon>Covalyzer_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Underlier.cs">
       <DependentUpon>Covalyzer_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Watchlist.cs">
@@ -156,21 +147,22 @@
       <DependentUpon>Covalyzer_model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Day.datasource" />
-    <None Include="Properties\DataSources\Etf.datasource" />
     <None Include="Properties\DataSources\Option.datasource" />
     <None Include="Properties\DataSources\Stock.datasource" />
-    <None Include="Properties\DataSources\StockExchange.datasource" />
-    <None Include="Properties\DataSources\Transaction.datasource" />
-    <None Include="Properties\DataSources\Watchlist.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Covalyzer_model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -182,9 +174,6 @@
       <DependentUpon>Covalyzer_model.edmx</DependentUpon>
       <LastGenOutput>Covalyzer_model.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

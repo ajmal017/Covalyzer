@@ -17,36 +17,29 @@ namespace CovaVSProj
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Security()
         {
-            this.Etf = new ObservableCollection<Etf>();
             this.MemberMap = new ObservableCollection<MemberMap>();
             this.Option = new ObservableCollection<Option>();
-            this.Option1 = new ObservableCollection<Option>();
-            this.Price1 = new ObservableCollection<Price>();
-            this.Stock = new ObservableCollection<Stock>();
+            this.Price = new ObservableCollection<Price>();
             this.Transaction = new ObservableCollection<Transaction>();
+            this.Underlier = new ObservableCollection<Underlier>();
         }
     
         public int id { get; set; }
         public string ticker_symbol { get; set; }
         public int stock_exchange_id { get; set; }
         public Nullable<int> position { get; set; }
-        public string price { get; set; }
         public string currency { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Etf> Etf { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<MemberMap> MemberMap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Option> Option { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Option> Option1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Price> Price1 { get; set; }
+        public virtual ObservableCollection<Price> Price { get; set; }
         public virtual StockExchange StockExchange { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Stock> Stock { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Transaction> Transaction { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ObservableCollection<Underlier> Underlier { get; set; }
     }
 }

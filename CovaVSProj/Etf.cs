@@ -15,10 +15,9 @@ namespace CovaVSProj
     public partial class Etf
     {
         public int id { get; set; }
-        public int security_id { get; set; }
-        public int exdividend_dates_id { get; set; }
+        public int underlier_id { get; set; }
+        public System.DateTime exdividend_dates { get; set; }
     
-        public virtual ExDividendDate ExDividendDate { get; set; }
-        public virtual Security Security { get; set; }
+        public virtual Underlier Underlier { get; set; }
     }
 }

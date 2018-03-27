@@ -15,13 +15,11 @@ namespace CovaVSProj
     public partial class Stock
     {
         public int id { get; set; }
-        public int security_id { get; set; }
-        public int exdividend_dates_id { get; set; }
-        public int earningcall_dates_id { get; set; }
+        public int underlier_id { get; set; }
+        public System.DateTime exdividend_date { get; set; }
+        public System.DateTime earningcall_date { get; set; }
         public string name { get; set; }
     
-        public virtual EarningcallsDate EarningcallsDate { get; set; }
-        public virtual ExDividendDate ExDividendDate { get; set; }
-        public virtual Security Security { get; set; }
+        public virtual Underlier Underlier { get; set; }
     }
 }
