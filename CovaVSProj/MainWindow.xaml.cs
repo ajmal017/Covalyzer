@@ -35,8 +35,8 @@ namespace CovaVSProj
             newOption = new Option();
             stockViewSource = ((CollectionViewSource)
                 (FindResource("stockViewSource")));
-            //optionViewSource = ((CollectionViewSource)
-            //    (FindResource("optionViewSource")));
+            optionViewSource = ((CollectionViewSource)
+                (FindResource("optionViewSource")));
             DataContext = this;
         }
 
@@ -55,8 +55,10 @@ namespace CovaVSProj
 
             // After the data is loaded call the DbSet<T>.Local property    
             // to use the DbSet<T> as a binding source.   
-            stockViewSource.Source = context.Stock.Local;
+            stockViewSource.Source  = context.Stock.Local;
+            optionViewSource.Source = context.Option.Local;
         }
+
         private void LastCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             stockViewSource.View.MoveCurrentToLast();
