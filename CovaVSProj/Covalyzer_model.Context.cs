@@ -16,7 +16,7 @@ namespace CovaVSProj
     public partial class CovalyzerEntities : DbContext
     {
         public CovalyzerEntities()
-            : base("name=CovalyzerEntities1")
+            : base("name=CovalyzerEntities")
         {
         }
     
