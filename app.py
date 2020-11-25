@@ -15,7 +15,7 @@ from Model.resamplecsv import resample
 def main():
     globvars.init_globvars()
 
-    logfilename = "CocAnalyzerMain.log"
+    logfilename = "Covalyzer.log"
     formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s',
                                   datefmt='%Y-%m-%d %H:%M:%S')
     mainLogger = logging.getLogger(__name__)
@@ -42,7 +42,7 @@ def main():
 
     mainLogger.addHandler(qt_handler)
 
-    mainLogger.info("CocAnalyzer Startup")
+    mainLogger.info("Covalyzer Startup")
     mainLogger.info("Settings at %s", client.settings.fileName())
 
     client.show()

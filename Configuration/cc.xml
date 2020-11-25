@@ -302,13 +302,9 @@
     <option expiry="20210115" strike="110" multiplier="100" price = "2.03"/>
    </bw>
 
-   <bw id="39" name="AMZN" enteringTime="20201019 2:42:30" enteringPrice="217.14" commission="1.48" quantity="0" exchange="SMART">
-        <underlyer type="STK" tickerSymbol="AMZN" price = "3240" earningscall = "20201129"/>
-        <option expiry="20201030" strike="3220" multiplier="100" price = "11.27"/>
-    <rolling_activities>
-        <rolled when="20201102 18:22:22" from="20201030" to="20201120" strike="3000"  buyprice = "251.18" sellprice="261.18" ulprice="3200.92" commission = "1.86"/>
-        <rolled when="20201104 18:22:22" from="20201120" to="20230120" strike="2950"  buyprice = "853.90" sellprice="1.85" ulprice="3200.92" commission = "1.86"/>
-    </rolling_activities>
+   <bw id="39" name="AMZN" enteringTime="20201120 2:42:30" enteringPrice="2935.53" commission="1.48" quantity="0" exchange="SMART">
+        <underlyer type="STK" tickerSymbol="AMZN" price = "3112.60" earningscall = "20201129"/>
+        <option expiry="20201218" strike="3000" multiplier="100" price = "177.07"/>
    </bw>
 
    <bw id="99" enteringTime="20201019 2:42:30" enteringPrice="217.14" commission="1.48" quantity="0">

@@ -387,7 +387,7 @@ class UiMainWindow(object):
 
     def retranslateUi(self, mw):
         _translate = QCoreApplication.translate
-        mw.setWindowTitle(_translate("MainWindow", "FreeOpcUa Client"))
+        mw.setWindowTitle(_translate("MainWindow", "Covalyzer Client"))
         self.menuOPC_UA_Client.setTitle(_translate("MainWindow", "Act&ions"))
         self.connectButton.setText(_translate("MainWindow", "Connect"))
         self.disconnectButton.setText(_translate("MainWindow", "Disconnect"))

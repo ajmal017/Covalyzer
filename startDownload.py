@@ -40,7 +40,7 @@ if __name__ == "__main__":
     model.initData(controller)
 
     if args.port != '' and int(args.port) in [4001,4002,7495,7497]:
-        globvars.controller.changeBrokerPort(int(args.port))
+        controller.changeBrokerPort(int(args.port))
     else:
         args.port = 7497
 

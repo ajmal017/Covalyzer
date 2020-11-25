@@ -289,7 +289,7 @@ class Controller:
                             else:
                                 globvars.logger.info("we are on a weekend => no data")
 
-                # globvars.logger.info("%s is already uptodate and no overwrite is set", self.fullSymbol(ctrct))
+                globvars.logger.info("%s is already uptodate and no overwrite is set", self.fullSymbol(ctrct))
 
         return
 

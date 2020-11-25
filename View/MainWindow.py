@@ -28,9 +28,9 @@ class MainWindow(QMainWindow):
         self.tabifyDockWidget(self.ui.refDockWidget, self.ui.graphDockWidget)
 
         # setup QSettings for application and get a settings object
-        QCoreApplication.setOrganizationName("FreeOpcUa")
-        QCoreApplication.setApplicationName("OpcUaClient")
-        self.settings = QSettings("./CocAnalyzer.ini", QSettings.IniFormat)
+        QCoreApplication.setOrganizationName("Mitec")
+        QCoreApplication.setApplicationName("Covalyzer")
+        self.settings = QSettings("./Covalyzer.ini", QSettings.IniFormat)
 
         self._address_list = self.settings.value("address_list", ["localhost:7", "opc.tcp://localhost:53530/OPCUA/SimulationServer/"])
         print("ADR", self._address_list)

@@ -88,6 +88,10 @@ strikes["GMAB"] = [30,35,40,45]
 strikes["GRBK"] = [20,22.5,25,30]
 strikes["NOW"]  = [505,510,515,520]
 
+strikes["REM"] = [30,31,32]
+strikes["EUFN"] = [16,17,18]
+strikes["XLI"] = [83,89,90]
+strikes["SPYG"] = [52,53,54]
 
 obasedir=r"C:\importantData\data\OPT_MIDPOINT\1_min"
 sbasedir=r"C:\importantData\data\STK_MIDPOINT\1_min"
