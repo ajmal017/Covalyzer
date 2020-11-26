@@ -12,8 +12,17 @@ from View.CMTWidget import CMTWidget
 from View.MainWindow import MainWindow
 from Misc.globals import globvars
 from Model.resamplecsv import resample
+import signal
+import sys
+
+def signal_handler(sig, frame):
+    print('You pressed Ctrl+C!')
+    sys.exit(0)
 
 if __name__ == "__main__":
+
+    signal.signal(signal.SIGINT, signal_handler)
+
     globvars.init_globvars()
 
     argp = argparse.ArgumentParser()
