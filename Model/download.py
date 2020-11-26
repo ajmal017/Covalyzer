@@ -193,7 +193,6 @@ class DownloadApp(EClient, wrapper.EWrapper):
         super().nextValidId(order_id)
 
         self.next_valid_order_id = order_id
-        globvars.logger.info(f"nextValidId: {order_id}")
         # we can start now
         self.start()
 

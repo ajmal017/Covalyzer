@@ -6,6 +6,9 @@ from Color import PALETTES_NAMED
 
 from pandas.plotting import register_matplotlib_converters
 
+import logging
+from .logger import LoggingData
+
 register_matplotlib_converters()
 
 class Sleep:
@@ -106,7 +109,7 @@ class globvars:
         globvars.finish                      = False
         globvars.imagecounter                = 0
         globvars.sleepmodcntr                         = 0
-        globvars.logfilename                         = "Logs/mainLog.log"
+        globvars.logfilename                = "Covalyzer.log"
         globvars.apilogfilename             = "Logs/apiLog.log"
         globvars.tickerData                 = {}
         globvars.downerrorcode              = {}
@@ -177,6 +180,12 @@ class globvars:
     def set_logger(logger):
         globvars.logger = logger
         globvars.logger.info("**********************************************")
-        globvars.logger.info("*          IBPY - Covered Call Analyzer      *")
+        globvars.logger.info("*     Covalyzer - Covered Call Analyzer      *")
         globvars.logger.info("**********************************************")
+
+
+    @staticmethod
+    def initMainLogger():
+        globvars.loggingdata = LoggingData(__name__, globvars.logfilename, logging.INFO)
+        globvars.mainLogger = globvars.loggingdata.logger
 

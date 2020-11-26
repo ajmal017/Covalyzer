@@ -22,18 +22,9 @@ if __name__ == "__main__":
     )
     args = argp.parse_args()
 
-
-    logfilename = "Download.log"
-    formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s',
-                                  datefmt='%Y-%m-%d %H:%M:%S')
-    mainLogger = logging.getLogger(__name__)
-    mainLogger.setLevel(logging.DEBUG)
-    file_Handler = logging.FileHandler(logfilename, mode='a')
-    file_Handler.setLevel(logging.DEBUG)
-    file_Handler.setFormatter(formatter)
-    mainLogger.addHandler(file_Handler)
-
-    globvars.logger = mainLogger
+    globvars.init_globvars()
+    globvars.initMainLogger()
+    globvars.logger = globvars.mainLogger
 
     model = CMTModel()
     controller = Controller(model)

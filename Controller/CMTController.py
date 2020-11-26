@@ -27,13 +27,11 @@ class Controller:
         self.doDownload = False
         self.downloadSelector = Misc.const.BOTH
         self.downloadThread.start()
-        globvars.logger.info("***************************")
         globvars.logger.info(__name__)
         attrs = vars(self)
         s="\n"+__name__+":"
         s = '\n'+__name__+':'.join("\n%s: %s" % item for item in attrs.items())
         globvars.logger.info(str(s))
-        globvars.logger.info("***************************")
         pass
 
     def initData(self,v):
@@ -218,8 +216,6 @@ class Controller:
                         enddate = datetime.datetime.strftime(datetime.datetime.now(), "%Y%m%d")
                         # datatypes = [newest[ctrct]["t"]]
 
-                    globvars.logger.info("updating %s", self.fullSymbol(ctrct))
-
                     contractsToDownload=[]
                     if startdate != enddate:
                         self.args.security_type = ctrct.secType
@@ -257,6 +253,7 @@ class Controller:
                                     dwnret=0
                                     try:
                                         downApp.run()
+
                                         # globvars.logger.info("downret: %s", str(globvars.downerrorcode["errorcode"]))
                                     except:
                                         #just please do not crash

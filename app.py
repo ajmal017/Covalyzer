@@ -14,18 +14,9 @@ from Model.resamplecsv import resample
 
 def main():
     globvars.init_globvars()
+    globvars.initMainLogger()
 
-    logfilename = "Covalyzer.log"
-    formatter = logging.Formatter(fmt='%(asctime)s.%(msecs)03d %(levelname)-8s [%(filename)s:%(lineno)d] - %(message)s',
-                                  datefmt='%Y-%m-%d %H:%M:%S')
-    mainLogger = logging.getLogger(__name__)
-    mainLogger.setLevel(logging.DEBUG)
-    file_Handler = logging.FileHandler(logfilename, mode='a')
-    file_Handler.setLevel(logging.DEBUG)
-    file_Handler.setFormatter(formatter)
-    mainLogger.addHandler(file_Handler)
-
-    globvars.logger = mainLogger
+    globvars.logger = globvars.mainLogger
 
     model = CMTModel()
     globvars.controller = Controller(model)
@@ -35,15 +26,14 @@ def main():
     view = CMTWidget(model, globvars.controller)
     client = MainWindow(view)
 
-
     qt_handler = QtHandler(client.ui.logTextEdit)
     qt_handler.setLevel(logging.INFO)
-    qt_handler.setFormatter(formatter)
+    qt_handler.setFormatter(globvars.loggingdata.formatter)
+    globvars.mainLogger.addHandler(qt_handler)
 
-    mainLogger.addHandler(qt_handler)
 
-    mainLogger.info("Covalyzer Startup")
-    mainLogger.info("Settings at %s", client.settings.fileName())
+    globvars.mainLogger.info("Covalyzer Startup")
+    globvars.mainLogger.info("Settings at %s", client.settings.fileName())
 
     client.show()
     sys.exit(app.exec_())
