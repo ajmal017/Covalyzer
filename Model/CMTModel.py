@@ -150,7 +150,7 @@ class CMTModel(QAbstractTableModel):
     def changeBrokerPort(self,newport):
         self.brkConnection.changeBrokerPort(newport)
 
-    def connectBroker(self, host="localhost", port=7497, cltid=10):
+    def connectBroker(self, host="localhost", port=7497, cltid=11):
         self.brkConnection.connectToIBKR(host, port, cltid)
 
     def disconnectBroker(self):

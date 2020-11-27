@@ -161,28 +161,6 @@ class BrkConnection:
         for cc in self.bw:
             self.brkApi.reqContractDetails(cc, self.bw[cc].underlyer())
 
-        dtnyse = Support.find_last_sx_opening_time(const.STOCKEXCHANGE_NYSE)
-        ifdtnyse = dtnyse.strftime("%Y%m%d %H:%M:%S")
-
-        dtcboe = Support.find_last_sx_opening_time(const.STOCKEXCHANGE_CBOE)
-        ifdtcboe = dtcboe.strftime("%Y%m%d %H:%M:%S")
-
-        for cc in self.bw:
-            # Valid Duration: S(econds), D(ay), W(eek), M(onth), Y(ear)
-            # Valid Bar Sizes: 1 secs 5 secs... 1 min 2 mins, 1hour, 2 hours, 1 day, 1 week, 1 month
-            ul = self.bw[cc].underlyer()
-            op = self.bw[cc].option()
-            icc = int(cc)
-            # ifdtnyse = '20200926 02:00:00'
-            # ifdtcboe = '20200925 22:00:00'
-            if icc %2 == 0:
-                self.brkApi.reqHistoricalData(icc, ul, ifdtnyse, "120 S", "1 min", "MIDPOINT",
-                                                 const.HISTDATA_OUTSIDERTH, 1, False, [])
-            else:
-                # globvars.logger.info("querying no. %s => %s", str(icco), cc.bw["underlyer"]["@tickerSymbol"])
-                self.brkApi.reqHistoricalData(icc, op, ifdtcboe, "120 S", "1 min", "MIDPOINT", 1,
-                                                 1, False, [])
-
         for cc in self.bw:
 
             # globvars.logger.info("querying no. %s: %s", cc.bw["@id"], cc.bw["underlyer"]["@tickerSymbol"])

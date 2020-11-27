@@ -296,7 +296,7 @@ class Controller:
         return self.model.getNumPositions()
 
     def connect(self):
-        self.model.connectBroker()
+        self.model.connectBroker(port=self.brokerPort)
 
     def disconnect(self):
         self.model.disconnectBroker()
