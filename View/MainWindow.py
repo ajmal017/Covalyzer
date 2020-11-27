@@ -23,7 +23,6 @@ class MainWindow(QMainWindow):
         w = QWidget()
         self.ui.addrDockWidget.setTitleBarWidget(w)
         # tabify some docks
-        self.tabifyDockWidget(self.ui.evDockWidget, self.ui.subDockWidget)
         self.tabifyDockWidget(self.ui.subDockWidget, self.ui.refDockWidget)
         self.tabifyDockWidget(self.ui.refDockWidget, self.ui.graphDockWidget)
 
