@@ -1,0 +1,32 @@
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+
+def getSubDockWidget(self, mw):
+    ret = QDockWidget(mw)
+    sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+    sizePolicy.setHorizontalStretch(0)
+    sizePolicy.setVerticalStretch(0)
+    sizePolicy.setHeightForWidth(ret.sizePolicy().hasHeightForWidth())
+    ret.setSizePolicy(sizePolicy)
+    ret.setObjectName("subDockWidget")
+    self.dockWidgetContents_3 = QWidget()
+    sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+    sizePolicy.setHorizontalStretch(0)
+    sizePolicy.setVerticalStretch(0)
+    sizePolicy.setHeightForWidth(self.dockWidgetContents_3.sizePolicy().hasHeightForWidth())
+    self.dockWidgetContents_3.setSizePolicy(sizePolicy)
+    self.dockWidgetContents_3.setObjectName("dockWidgetContents_3")
+    self.gridLayout_3 = QGridLayout(self.dockWidgetContents_3)
+    self.gridLayout_3.setContentsMargins(11, 11, 11, 11)
+    self.gridLayout_3.setSpacing(6)
+    self.gridLayout_3.setObjectName("gridLayout_3")
+    self.subView = QTableView(self.dockWidgetContents_3)
+    self.subView.setAcceptDrops(True)
+    self.subView.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+    self.subView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+    self.subView.setDragDropOverwriteMode(False)
+    self.subView.setDragDropMode(QAbstractItemView.DropOnly)
+    self.subView.setObjectName("subView")
+    self.gridLayout_3.addWidget(self.subView, 0, 0, 1, 1)
+    ret.setWidget(self.dockWidgetContents_3)
+    return ret
