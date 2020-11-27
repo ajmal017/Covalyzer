@@ -24,6 +24,7 @@ def getRefDockWidget(self, mw):
     self.refView.setEditTriggers(QAbstractItemView.NoEditTriggers)
     self.refView.setObjectName("refView")
     self.verticalLayout_2.addWidget(self.refView)
+
     ret.setWidget(self.dockWidgetContents_4)
     return ret
 
